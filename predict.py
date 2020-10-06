@@ -36,7 +36,7 @@ target = np.array(target)
 target = np_utils.to_categorical(target, 2)
 
 
-# delete semi-detached binaries
+# if you want to delete semi-detached binaries uncomment this
 '''
 filtered_curves = []
 curves=[]
