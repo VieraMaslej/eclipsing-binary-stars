@@ -9,27 +9,26 @@ from sklearn.metrics import confusion_matrix, classification_report
 from sklearn.metrics import precision_recall_fscore_support
 from ast import literal_eval
 
-print("loading observation data...")
-
+# load observation data
 columns = ['id', 'morphology', 'passband', 'params', 'data', 'origin', 'period', 'target', 'epoch', 'meta']
-df = pd.read_csv("C:/Users/student/Vierka/spotty/observed_lc.csv", sep="|", header=None)
+df = pd.read_csv("observed.csv", sep="|", header=None)
 df.columns = columns
-df = df[["target", "morphology", "data", "meta"]]
 
+df = df[["target", "morphology", "data", "meta"]]
+df["original_morphology"] = [json.loads(_data)["morphology"] for _data in df["meta"]]
 processed_data = [literal_eval(_data)["flux"] for _data in df["data"]]
+
 morphology = df[["morphology"]].values
 objectt =  df[["target"]].values
 
-df["original_morphology"] = [json.loads(_data)["morphology"] for _data in df["meta"]]
-morphology = df["original_morphology"]
-
 processed_data = np.array(processed_data, dtype=np.float32)
 
+# set semi-detached as detached
 target = []
 for i in morphology:
     if i == 'over-contact':
         target.extend([0])
-    if i == 'semi-detached':
+    if i == 'semi-detached':  # add a comment if you want delete semi-detached binaries
        target.extend([1])
     if i == 'detached':
         target.extend([1])
@@ -37,7 +36,7 @@ target = np.array(target)
 target = np_utils.to_categorical(target, 2)
 
 
-# delete semi-detached
+# delete semi-detached binaries
 '''
 filtered_curves = []
 curves=[]
@@ -48,24 +47,19 @@ curves = filtered_curves
 curves = np.array(curves, dtype=np.float32)
 '''
 
-print("loading model....")
+# load model
 classifier=load_model('model.hdf5')
 
-print("predict model....")
+# predict observation data
 y_pred = classifier.predict(processed_data)
-print(y_pred)
 y_pred2 = np.where(y_pred > 0.5, 1, 0)
-print(y_pred2)
-print(target)
+
+# evalution observation data
 cm = confusion_matrix(target.argmax(axis=1), y_pred2.argmax(axis=1))
 print("Confusion matrix: \n" + str(cm))
-prfs = precision_recall_fscore_support(target.argmax(axis=1), y_pred2.argmax(axis=1), average=None)
-print("Precision, Recall, f1 score, support: " + str(prfs))
-
 print(classification_report(target.argmax(axis=1), y_pred2.argmax(axis=1)))
 
-
-# plot
+# plotting incorrectly classified curves
 for j in range(len(y_pred2)):
     if  (y_pred2[j].argmax(axis=0) == 1) and (target[j].argmax(axis=0) == 0)  :
         print(j)
