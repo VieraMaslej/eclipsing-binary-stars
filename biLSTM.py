@@ -15,7 +15,6 @@ from keras.layers.merge import Concatenate
 from tensorflow.keras.callbacks import ModelCheckpoint, EarlyStopping
 
 # load synthetic light curve - ELISa
-
 data = pd.read_csv('data.csv')
 data.head()
 
@@ -69,7 +68,6 @@ output = Dense(2, activation='softmax')(x)
 classifier = Model(inputs=inputs, outputs=output)
 classifier.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['acc'])
 print(classifier.summary())
-
 
 # CNN, LSTM model
 '''
