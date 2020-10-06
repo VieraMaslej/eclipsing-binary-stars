@@ -31,7 +31,7 @@ for i in morphology:
     if i == 'semi-detached':  # add a comment if you want delete semi-detached binaries
        target.extend([1])
     if i == 'detached':
-        target.extend([1])
+        target.extend([1]) 
 target = np.array(target)
 target = np_utils.to_categorical(target, 2)
 
