@@ -84,7 +84,7 @@ classifier.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['
 print(classifier.summary())
 '''
 
-# training
+# training 
 history = classifier.fit(X_train, y_train, validation_data=(x_val, y_val), epochs=5, batch_size=32, verbose=1)
 
 # evalute model - validation dataset
