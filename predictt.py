@@ -18,6 +18,7 @@ df = df[["target", "morphology", "data", "meta"]]
 
 processed_data = [literal_eval(_data)["flux"] for _data in df["data"]]
 morphology = df[["morphology"]].values
+objectt =  df[["target"]].values
 
 df["original_morphology"] = [json.loads(_data)["morphology"] for _data in df["meta"]]
 morphology = df["original_morphology"]
@@ -63,8 +64,8 @@ print("Precision, Recall, f1 score, support: " + str(prfs))
 
 print(classification_report(target.argmax(axis=1), y_pred2.argmax(axis=1)))
 
-objectt =  df[["target"]].values
 
+# plot
 for j in range(len(y_pred2)):
     if  (y_pred2[j].argmax(axis=0) == 1) and (target[j].argmax(axis=0) == 0)  :
         print(j)
