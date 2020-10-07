@@ -37,21 +37,20 @@ target = np_utils.to_categorical(target, 2)
 
 
 # if you want to delete semi-detached binaries uncomment this
-'''
-filtered_curves = []
-curves=[]
-for i in range(len(morphology)):
-        if morphology[i] != 'semi-detached':
-            filtered_curves.append(processed_data[i])
-curves = filtered_curves
-curves = np.array(curves, dtype=np.float32)
-'''
+
+#filtered_curves = []
+#curves=[]
+#for i in range(len(morphology)):
+#        if morphology[i] != 'semi-detached':
+#            filtered_curves.append(processed_data[i])
+#curves = filtered_curves
+#curves = np.array(curves, dtype=np.float32)
 
 # load model
 classifier=load_model('model.hdf5')
 
 # predict observation data
-y_pred = classifier.predict(processed_data)
+y_pred = classifier.predict(processed_data) # if you want to predict only detached and over-contacted binaries instead "processed_data"  use variable "curves"
 y_pred2 = np.where(y_pred > 0.5, 1, 0)
 
 # evalution observation data
@@ -65,10 +64,8 @@ for j in range(len(y_pred2)):
         print(j)
         plt.plot(processed_data[j], label = objectt[j] )
 plt.legend(loc='upper right')       
-
 plt.savefig('image.png')
 
-'''
 objekt=[]
 for j in range(len(y_pred2)):
     if (y_pred2[j].argmax(axis=0) == 0) and (target[j].argmax(axis=0) == 1)   :
@@ -76,4 +73,4 @@ for j in range(len(y_pred2)):
         
 plt.legend(loc='upper right')       
 plt.savefig('image2.png')
-'''
+
