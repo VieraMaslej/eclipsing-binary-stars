@@ -23,7 +23,7 @@ data=data[data['spotty']==0]
 for row in data['generic_bessell_v']:
      row = json.loads(row)
 
-# normalize
+# normalize data
 newData = []
 for row in data['generic_bessell_v']:
     row = json.loads(row)
@@ -69,20 +69,19 @@ classifier = Model(inputs=inputs, outputs=output)
 classifier.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['acc'])
 print(classifier.summary())
 
-# CNN, LSTM model
-'''
-inputs = Input(shape=(100,1))
-b = Conv1D(32, kernel_size = 3, padding = "valid")(inputs)
-b = MaxPooling1D(2)(b)
-b = Dropout(0.2)(b)
-b = LSTM(64, return_sequences=True)(b)
-b = Flatten()(b)
-x = Dense(32, activation='relu')(b)
-output = Dense(2, activation='softmax')(x)
-classifier = Model(inputs=inputs, outputs=output)
-classifier.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['acc'])
-print(classifier.summary())
-'''
+# CNN, LSTM model -- the second best model
+
+#inputs = Input(shape=(100,1))
+#b = Conv1D(32, kernel_size = 3, padding = "valid")(inputs)
+#b = MaxPooling1D(2)(b)
+#b = Dropout(0.2)(b)
+#b = LSTM(64, return_sequences=True)(b)
+#b = Flatten()(b)
+#x = Dense(32, activation='relu')(b)
+#output = Dense(2, activation='softmax')(x)
+#classifier = Model(inputs=inputs, outputs=output)
+#classifier.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['acc'])
+#print(classifier.summary())
 
 # training  
 history = classifier.fit(X_train, y_train, validation_data=(x_val, y_val), epochs=5, batch_size=32, verbose=1)
