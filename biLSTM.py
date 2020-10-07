@@ -32,7 +32,7 @@ for row in data['generic_bessell_v']:
     for valueIndex in range(len(row)):
         row[valueIndex] = (row[valueIndex] - minValueOfRow) / (maxValueOfRow - minValueOfRow)
         newRow.append([row[valueIndex]])
-    newData.append(newRow)
+    newData.append(newRow) 
     
 newData = np.array(newData)
 
