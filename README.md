@@ -1,5 +1,8 @@
-# eclipsing-binary-stars
+# Eclipsing-binary-stars-classification
 ## Automatic classification of eclipsing binary stars using deep learning methods
+
+### Authors
+Viera Maslej Krešňáková, Michal Čokina, Peter Butka, Štefan Parimucha
 
 ### Abstract
 
