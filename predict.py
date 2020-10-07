@@ -73,4 +73,3 @@ for j in range(len(y_pred2)):
         
 plt.legend(loc='upper right')       
 plt.savefig('image2.png')
-
