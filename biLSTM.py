@@ -83,12 +83,16 @@ print(classifier.summary())
 #classifier.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['acc'])
 #print(classifier.summary())
 
+# checpoint - save only best model
+saved_model = "model.hdf5"
+checkpoint = ModelCheckpoint(saved_model, monitor='val_acc', verbose=1, save_best_only=True, mode='max')
+early = EarlyStopping(monitor="val_acc", mode="max", patience=3)
+callbacks_list = [checkpoint, early]
+
 # training  
-history = classifier.fit(X_train, y_train, validation_data=(x_val, y_val), epochs=5, batch_size=32, verbose=1)
+history = classifier.fit(X_train, y_train, validation_data=(x_val, y_val), epochs=5, batch_size=32, verbose=1, callbacks = callbacks_list)
 
 # evalute model - validation dataset
 accuracy = classifier.evaluate(x_val, y_val, batch_size=32, verbose=1)
 print("Accuracy: " + str(accuracy))
 
-# save model
-classifier.save("model.hdf5")
