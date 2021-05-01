@@ -49,7 +49,7 @@ for row in data['morphology']:
 target = np.array(target)
 
 # split to train and validation dataset
-X_train, X, y_val, y_val = train_test_split(newData, target, test_size=0.2)
+X_train, X_val, y_train, y_val = train_test_split(newData, target, test_size=0.2)
 y_train = np_utils.to_categorical(y_train, 2)
 
 #biLSTM + CNN model
@@ -90,9 +90,9 @@ early = EarlyStopping(monitor="val_acc", mode="max", patience=3)
 callbacks_list = [checkpoint, early]
 
 # training  
-history = classifier.fit(X_train, y_train, validation_data=(x_val, y_val), epochs=5, batch_size=32, verbose=1, callbacks = callbacks_list)
+history = classifier.fit(X_train, y_train, validation_data=(X_val, y_val), epochs=5, batch_size=32, verbose=1, callbacks = callbacks_list)
 
 # evalute model - validation dataset
-accuracy = classifier.evaluate(x_val, y_val, batch_size=32, verbose=1)
+accuracy = classifier.evaluate(X_val, y_val, batch_size=32, verbose=1)
 print("Accuracy: " + str(accuracy))
 
