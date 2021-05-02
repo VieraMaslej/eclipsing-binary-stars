@@ -11,3 +11,5 @@ In the last couple of decades, tremendous progress has been achieved in developi
 ELISa software available on https://github.com/mikecokina/elisa
 
 Dataset of synthetic data from ELISa software: https://mega.nz/file/jYxVWQgK#FVfqyz57jNGxHOPG6XI3PXyohjLsJDZ_9lDqHJ-AMkg
+
+Observation data: observed_lc.csv
