@@ -82,7 +82,7 @@ print(classifier.summary())
 #classifier = Model(inputs=inputs, outputs=output)
 #classifier.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['acc'])
 #print(classifier.summary())
-
+ 
 # checpoint - save only best model
 saved_model = "model.hdf5"
 checkpoint = ModelCheckpoint(saved_model, monitor='val_acc', verbose=1, save_best_only=True, mode='max')
