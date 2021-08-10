@@ -14,3 +14,17 @@ ELISa software available on https://github.com/mikecokina/elisa
 Dataset of synthetic data from ELISa software: https://mega.nz/file/jYxVWQgK#FVfqyz57jNGxHOPG6XI3PXyohjLsJDZ_9lDqHJ-AMkg
 
 Observation data: observed_lc.csv
+
+### BibTeX:
+
+@article{COKINA2021100488,<br/>
+author = {{\v{C}}okina, M and Maslej-Kre{\v{s}}ň{\'{a}}kov{\'{a}}, V and Butka, P and Parimucha, {\v{S}}},<br/>
+doi = {https://doi.org/10.1016/j.ascom.2021.100488},<br/>
+issn = {2213-1337},<br/>
+journal = {Astronomy and Computing},<br/>
+keywords = {Classification,Deep learning,Eclipsing binary stars,Light curves},<br/>
+pages = {100488},<br/>
+title = {{Automatic classification of eclipsing binary stars using deep learning methods}},<br/>
+url = {https://www.sciencedirect.com/science/article/pii/S2213133721000421},<br/>
+year = {2021}<br/>
+}
